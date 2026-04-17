@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  mf-characters:
+    build:
+      context: ./mf-characters
+    ports:
+      - "3001:3001"
+    networks:
+      - mf-network
+
+  mf-character-detail:
+    build:
+      context: ./mf-character-detail
+    ports:
+      - "3002:3002"
+    networks:
+      - mf-network
+
+  mf-shell:
+    build:
+      context: ./mf-shell
+    ports:
+      - "3000:3000"
+    environment:
+    - CHARACTERS_URL=http://mf-characters:3001
+    - CHARACTER_DETAIL_URL=http://mf-character-detail:3002 
+    depends_on:
+      - mf-characters
+      - mf-character-detail
+    networks:
+      - mf-network
+
+networks:
+  mf-network:
+    driver: bridge
