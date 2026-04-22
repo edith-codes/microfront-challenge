@@ -12,6 +12,7 @@
     "moduleResolution": "bundler",
     "useDefineForClassFields": true,
     "allowImportingTsExtensions": true,
+    "types": ["jest"],
     "paths": {
       "*": ["./@mf-types/*"]
     }
